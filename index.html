@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hibbeler 9-34 解題</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+:root{
+  --bg:#f7f6f2;--card:#ffffff;--ink:#1f2328;--mute:#6a6f76;--line:#d9d6cc;
+  --accent:#2f5d8a;--warn:#b5432c;--warn-bg:#fbeee9;--ok:#2e7d4f;--ok-bg:#e9f5ee;
+  --top:#cfe1ee;--side:#a9c7dc;--end:#8fb3cc;--wall:#d8d8d8;
+  --load:#b5432c;--react:#2e7d4f;--axis:#7a5ea8;--qa:rgba(214,152,40,.35);--qb:rgba(47,93,138,.30);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#16181c;--card:#1e2126;--ink:#e6e6e3;--mute:#9aa0a6;--line:#343840;
+  --accent:#7fb0dd;--warn:#ef8a72;--warn-bg:#3a2420;--ok:#6cc495;--ok-bg:#1f3328;
+  --top:#3a5468;--side:#2e4557;--end:#25394a;--wall:#3a3a3a;
+  --load:#ef8a72;--react:#6cc495;--axis:#b9a2e6;--qa:rgba(214,152,40,.35);--qb:rgba(127,176,221,.30);
+}}
+:root[data-theme="dark"]{
+  --bg:#16181c;--card:#1e2126;--ink:#e6e6e3;--mute:#9aa0a6;--line:#343840;
+  --accent:#7fb0dd;--warn:#ef8a72;--warn-bg:#3a2420;--ok:#6cc495;--ok-bg:#1f3328;
+  --top:#3a5468;--side:#2e4557;--end:#25394a;--wall:#3a3a3a;
+  --load:#ef8a72;--react:#6cc495;--axis:#b9a2e6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 16px 80px}
+h1{font-size:1.7rem;margin:0 0 4px}
+h2{font-size:1.25rem;margin:40px 0 12px;padding-top:12px;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:24px 0 8px}
+.sub{color:var(--mute);margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:16px 0}
+.warn{background:var(--warn-bg);border-color:var(--warn)}
+.ok{background:var(--ok-bg);border-color:var(--ok)}
+.warn b.t,.ok b.t{display:block;margin-bottom:4px}
+.warn b.t{color:var(--warn)} .ok b.t{color:var(--ok)}
+figure{margin:16px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+figure svg{width:100%;height:auto;display:block}
+figcaption{color:var(--mute);font-size:.88rem;text-align:center;margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+th{color:var(--mute);font-weight:600}
+td.bad{color:var(--warn);text-decoration:line-through}
+td.good{color:var(--ok);font-weight:700}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+ol li,ul li{margin:4px 0}
+/* SVG */
+.f-top{fill:var(--top);stroke:var(--ink);stroke-width:1.2}
+.f-side{fill:var(--side);stroke:var(--ink);stroke-width:1.2}
+.f-end{fill:var(--end);stroke:var(--ink);stroke-width:1.2}
+.f-wall{fill:var(--wall);stroke:none}
+.sec{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:5 4}
+.pt{fill:var(--warn);stroke:var(--card);stroke-width:1.5}
+.pt2{fill:var(--accent)}
+.load{stroke:var(--load);stroke-width:3}
+.comp{stroke:var(--load);stroke-width:1;stroke-dasharray:3 3}
+.react{stroke:var(--react);stroke-width:2.6}
+.axis{stroke:var(--axis);stroke-width:1.6}
+.dim{stroke:var(--mute);stroke-width:1}
+.na{stroke:var(--mute);stroke-width:1;stroke-dasharray:6 4}
+.elem{fill:var(--top);stroke:var(--ink);stroke-width:1.4}
+.sig{stroke:var(--ink);stroke-width:2.2}
+.tau{stroke:var(--react);stroke-width:2.4}
+.ghost{fill:none;stroke:var(--mute);stroke-width:1.5;stroke-dasharray:3 2}
+.mohr{fill:none;stroke:var(--accent);stroke-width:2}
+.qa{fill:var(--qa)} .qb{fill:var(--qb)}
+.ah{fill:var(--ink)} .ahL{fill:var(--load)} .ahA{fill:var(--axis)} .ahR{fill:var(--react)}
+.tkm{stroke:var(--mute);stroke-width:1.2}
+.lbl{fill:var(--ink);font-size:15px;font-family:inherit}
+.lbl.b{font-weight:700;font-size:17px}
+.lbl.sm{font-size:13px} .lbl.xs{font-size:11.5px}
+.mute{fill:var(--mute)} .load-t{fill:var(--load)} .react-t{fill:var(--react)} .axis-t{fill:var(--axis)}
+.qa-t{fill:#a8701a} .qb-t{fill:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>Hibbeler 9-34：懸臂梁 A、B 點主應力</h1>
+<p class="sub">題目：求懸臂梁在 A、B 兩點的主應力。斷面 120 mm × 150 mm，自由端受 15 kN（3-4-5 斜率），A、B 所在截面距自由端 1200 mm、距牆 800 mm。</p>
+
+<div class="card warn">
+<b class="t">錯在哪裡：B 點的剪應力少了負號</b>
+原本的解答寫 $\tau_B = 0.667\ \text{MPa}$，正確答案是 <b>$\tau_{xz} = -0.667\ \text{MPa}$</b>。
+原因是我只用 $\tau = VQ/It$ 算了<b>大小</b>，沒有在右手座標系裡判斷方向。B 點的剪應力是水平剪力 $V_z$ 造成的，而截面上的 $V_z$ 指向 <b>−z</b>（背離 A 側），所以 $\tau_{xz}$ 是負的。
+</div>
+
+<div class="card ok">
+<b class="t">哪些答案不受影響</b>
+主應力公式裡剪應力是以 $\tau^2$ 出現，所以正負號不會改變主應力的大小：A 點 $\sigma_1=37.8$ kPa、$\sigma_2=-10.8$ MPa，B 點 $\sigma_1=42.0$ MPa、$\sigma_2=-10.6$ kPa 都還是對的。
+A 點的 $\tau_{xy}=+0.640$ MPa 正負號本來就是對的。正負號會影響的是<b>主平面的方向</b>，第 7 節會說明。
+</div>
+
+<h2>1. 讀圖與座標系</h2>
+<figure><svg viewBox="0 0 640 420" role="img" aria-label="懸臂梁立體示意圖">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><polygon points="349.2,91.8 473.2,116.6 473.2,-26.0 349.2,-50.8" class="f-wall"/><polygon points="70.0,207.0 374.0,-21.0 448.4,-6.1 144.4,221.9" class="f-top"/><polygon points="144.4,314.9 448.4,86.9 448.4,-6.1 144.4,221.9" class="f-side"/><polygon points="70.0,300.0 144.4,314.9 144.4,221.9 70.0,207.0" class="f-end"/><polygon points="252.4,163.2 326.8,178.1 326.8,85.1 252.4,70.2" class="sec"/><circle cx="326.8" cy="103.7" r="4.5" class="pt"/><circle cx="277.2" cy="75.2" r="4.5" class="pt"/><text x="335.8" y="109.7" class="lbl b" text-anchor="start">A</text><text x="271.2" y="65.2" class="lbl b" text-anchor="end">B</text><line x1="107.2" y1="260.9" x2="167.2" y2="352.9" class="load" marker-end="url(#ahL)"/><line x1="107.2" y1="260.9" x2="107.2" y2="340.9" class="comp" /><line x1="107.2" y1="340.9" x2="167.2" y2="352.9" class="comp" /><text x="173.2" y="366.9" class="lbl load-t" text-anchor="start">15 kN</text><text x="97.2" y="304.9" class="lbl sm" text-anchor="end">4</text><text x="137.2" y="362.9" class="lbl sm" text-anchor="start">3</text><line x1="181.6" y1="322.3" x2="364.0" y2="185.5" class="dim" marker-start="url(#tk)" marker-end="url(#tk)"/><line x1="364.0" y1="185.5" x2="485.6" y2="94.3" class="dim" marker-end="url(#tk)"/><text x="282.8" y="269.9" class="lbl sm" text-anchor="start">1200 mm</text><text x="434.8" y="155.9" class="lbl sm" text-anchor="start">800 mm</text><text x="107.2" y="197.0" class="lbl sm" text-anchor="middle">120</text><text x="62.0" y="257.5" class="lbl sm" text-anchor="end">150</text><line x1="470.0" y1="320.0" x2="514.0" y2="287.0" class="axis" marker-end="url(#ahA)"/><text x="518.0" y="283.0" class="lbl sm axis-t" text-anchor="start">x（朝牆）</text><line x1="470.0" y1="320.0" x2="470.0" y2="265.0" class="axis" marker-end="url(#ahA)"/><text x="474.0" y="261.0" class="lbl sm axis-t" text-anchor="start">y（向上）</text><line x1="470.0" y1="320.0" x2="525.0" y2="331.0" class="axis" marker-end="url(#ahA)"/><text x="529.0" y="345.0" class="lbl sm axis-t" text-anchor="start">z（朝 A 側）</text></svg><figcaption>圖 1　15 kN 作用在自由端截面形心：4 份向下、3 份沿寬度朝 A 所在的側面。A 在側面距頂 30 mm，B 在頂面距左緣 40 mm。</figcaption></figure>
+<p>取<b>右手</b>座標系，判斷正負號全靠它：</p>
+<ul>
+<li><b>x</b>：沿梁軸指向牆</li>
+<li><b>y</b>：鉛直向上</li>
+<li><b>z</b>：水平指向 A 所在的側面（檢查：$\hat x\times\hat y=\hat z$ ✓）</li>
+</ul>
+$$P_y=-15\cdot\tfrac45=-12\ \text{kN},\qquad P_z=+15\cdot\tfrac35=+9\ \text{kN}$$
+
+<h2>2. 截面內力（取自由端段）</h2>
+<figure><svg viewBox="0 0 680 280" role="img" aria-label="自由端段自由體圖">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><rect x="170" y="80" width="260" height="70" class="f-side"/><text x="300.0" y="120.0" class="lbl sm mute" text-anchor="middle">自由端段（長 1.2 m）</text><line x1="170.0" y1="115.0" x2="170.0" y2="185.0" class="load" marker-end="url(#ahL)"/><text x="164.0" y="185.0" class="lbl sm load-t" text-anchor="end">12 kN</text><text x="164.0" y="203.0" class="lbl xs load-t" text-anchor="end">（朝 A 側另有 9 kN）</text><line x1="430.0" y1="165.0" x2="430.0" y2="65.0" class="react" marker-end="url(#ahR)"/><text x="438.0" y="75.0" class="lbl sm react-t" text-anchor="start">V_y = +12 kN</text><text x="438.0" y="97.0" class="lbl sm react-t" text-anchor="start">V_z = −9 kN（背離 A 側）</text><text x="438.0" y="123.0" class="lbl sm react-t" text-anchor="start">M_z = 14.4 kN·m</text><text x="438.0" y="145.0" class="lbl sm react-t" text-anchor="start">M_y = 10.8 kN·m</text><text x="426.0" y="68.0" class="lbl xs mute" text-anchor="end">+x 面（外法線朝牆）</text><line x1="190.0" y1="220.0" x2="235.0" y2="220.0" class="axis" marker-end="url(#ahA)"/><line x1="190.0" y1="220.0" x2="190.0" y2="175.0" class="axis" marker-end="url(#ahA)"/><text x="240.0" y="224.0" class="lbl xs axis-t" text-anchor="start">x（朝牆）</text><text x="196.0" y="180.0" class="lbl xs axis-t" text-anchor="start">y</text></svg><figcaption>圖 2　自由端段。截面是它的 +x 面，內力必須和外力平衡。</figcaption></figure>
+<p>力平衡：截面（+x 面）上的內力等於 $-\vec P$。</p>
+$$V_y=+12\ \text{kN},\qquad V_z=-9\ \text{kN}$$
+<p>彎矩：外力作用點相對截面形心的位置是 $\vec r=(-1200,0,0)$ mm。</p>
+$$\vec M_{\text{內}}=-\vec r\times\vec P=(0,\,-10.8,\,-14.4)\ \text{kN}\cdot\text{m}$$
+<ul>
+<li>$|M_z|=12(1.2)=14.4$ kN·m：上緣受拉、下緣受壓</li>
+<li>$|M_y|=9(1.2)=10.8$ kN·m：A 側（+z）受壓、對側受拉</li>
+</ul>
+
+<h2>3. 斷面性質</h2>
+<figure><svg viewBox="0 0 460 360" role="img" aria-label="斷面與 Q 面積">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><rect x="120" y="40" width="192.0" height="240.0" class="f-end"/><rect x="120" y="40" width="192.0" height="48.0" class="qa"/><rect x="120" y="40" width="64.0" height="240.0" class="qb"/><line x1="105.0" y1="160.0" x2="327.0" y2="160.0" class="na" /><line x1="216.0" y1="25.0" x2="216.0" y2="295.0" class="na" /><text x="330.0" y="164.0" class="lbl sm axis-t" text-anchor="start">z</text><text x="216.0" y="20.0" class="lbl sm axis-t" text-anchor="middle">y</text><circle cx="312.0" cy="88.0" r="5" class="pt"/><text x="322.0" y="93.0" class="lbl b" text-anchor="start">A</text><circle cx="184.0" cy="40" r="5" class="pt"/><text x="184.0" y="30.0" class="lbl b" text-anchor="middle">B</text><text x="232.0" y="69.0" class="lbl sm qa-t" text-anchor="middle">Q_A：120×30</text><text x="152.0" y="240.0" class="lbl sm qb-t" text-anchor="middle">Q_B</text><text x="152.0" y="258.0" class="lbl sm qb-t" text-anchor="middle">40×150</text><text x="322.0" y="68.0" class="lbl sm" text-anchor="start">30</text><text x="152.0" y="34.0" class="lbl sm" text-anchor="middle">40</text><text x="216.0" y="310.0" class="lbl sm" text-anchor="middle">120 mm</text><text x="94.0" y="130.0" class="lbl sm" text-anchor="end">150 mm</text><text x="330.0" y="200.0" class="lbl xs mute" text-anchor="start">中性軸</text><text x="216.0" y="332.0" class="lbl xs mute" text-anchor="middle">（從自由端看向牆，x 指入紙面）</text></svg><figcaption>圖 3　橘色是算 $Q_A$ 用的面積（A 以上），藍色是算 $Q_B$ 用的面積（B 左側）。</figcaption></figure>
+$$I_z=\frac{120(150)^3}{12}=33.75\times10^{6}\ \text{mm}^4,\qquad I_y=\frac{150(120)^3}{12}=21.6\times10^{6}\ \text{mm}^4$$
+$$Q_A=(120\times30)(75-15)=216\times10^{3}\ \text{mm}^3$$
+$$Q_B=(40\times150)(60-20)=240\times10^{3}\ \text{mm}^3$$
+
+<h2>4. A 點（側面，$y=45$ mm、$z=60$ mm）</h2>
+<p><b>正向應力</b></p>
+$$\sigma_A=\frac{M_z\,y}{I_z}-\frac{M_y\,z}{I_y}=\frac{14.4\times10^6(45)}{33.75\times10^6}-\frac{10.8\times10^6(60)}{21.6\times10^6}=19.2-30=-10.8\ \text{MPa}$$
+<p><b>剪應力</b></p>
+<ul>
+<li>A 在側面的自由邊上，水平剪力 $V_z$ 在這裡的 $Q=0$，貢獻為 0。</li>
+<li>只剩鉛直剪力 $V_y=+12$ kN，它指向 +y，所以 $\tau_{xy}$ 是正的：</li>
+</ul>
+$$\tau_{xy}=+\frac{V_yQ_A}{I_zt}=+\frac{12\times10^3(216\times10^3)}{33.75\times10^6(120)}=+0.640\ \text{MPa}$$
+
+<h2>5. B 點（頂面，$y=75$ mm、$z=-20$ mm）</h2>
+<p><b>正向應力</b></p>
+$$\sigma_B=\frac{14.4\times10^6(75)}{33.75\times10^6}+\frac{10.8\times10^6(20)}{21.6\times10^6}=32+10=42.0\ \text{MPa}$$
+<p><b>剪應力（原本錯的地方）</b></p>
+<ul>
+<li>B 在頂面，鉛直剪力 $V_y$ 在這裡的 $Q=0$，貢獻為 0。</li>
+<li>只剩水平剪力 $V_z=-9$ kN，它指向 <b>−z</b>，所以 $\tau_{xz}$ 是負的：</li>
+</ul>
+$$\tau_{xz}=-\frac{|V_z|\,Q_B}{I_y\,t}=-\frac{9\times10^3(240\times10^3)}{21.6\times10^6(150)}=\boxed{-0.667\ \text{MPa}}$$
+<p>直觀檢查：載重把自由端推向 A 側，所以牆那一側必須在截面上把它往回拉，也就是朝 −z。剪應力的方向和這個回拉的方向一致。</p>
+
+<div class="two">
+<figure><svg viewBox="0 0 340 310" role="img" aria-label="A 點應力元素">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><rect x="125.0" y="105.0" width="90" height="90" class="elem"/><line x1="79.0" y1="150.0" x2="117.0" y2="150.0" class="sig" marker-end="url(#ah)"/><line x1="261.0" y1="150.0" x2="223.0" y2="150.0" class="sig" marker-end="url(#ah)"/><text x="265.0" y="142.0" class="lbl sm" text-anchor="start">10.8 MPa</text><line x1="221.0" y1="180.0" x2="221.0" y2="120.0" class="tau" marker-end="url(#ahR)"/><line x1="119.0" y1="120.0" x2="119.0" y2="180.0" class="tau" marker-end="url(#ahR)"/><line x1="140.0" y1="99.0" x2="200.0" y2="99.0" class="tau" marker-end="url(#ahR)"/><line x1="200.0" y1="201.0" x2="140.0" y2="201.0" class="tau" marker-end="url(#ahR)"/><text x="204.0" y="93.0" class="lbl sm react-t" text-anchor="start">τ = 0.640 MPa</text><line x1="30.0" y1="285.0" x2="70.0" y2="285.0" class="axis" marker-end="url(#ahA)"/><line x1="30.0" y1="285.0" x2="30.0" y2="245.0" class="axis" marker-end="url(#ahA)"/><text x="74.0" y="289.0" class="lbl xs axis-t" text-anchor="start">x（朝牆）</text><text x="36.0" y="249.0" class="lbl xs axis-t" text-anchor="start">y（向上）</text><text x="170.0" y="22.0" class="lbl xs mute" text-anchor="middle">A 在側面：從 A 側（+z）往內看</text></svg><figcaption>圖 4a　A 點元素：$\sigma_x=-10.8$ MPa（壓），$\tau_{xy}=+0.640$ MPa。+x 面上的剪應力朝 +y。</figcaption></figure>
+<figure><svg viewBox="0 0 340 310" role="img" aria-label="B 點應力元素">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><rect x="125.0" y="105.0" width="90" height="90" class="elem"/><line x1="170.0" y1="97.0" x2="170.0" y2="59.0" class="sig" marker-end="url(#ah)"/><line x1="170.0" y1="203.0" x2="170.0" y2="241.0" class="sig" marker-end="url(#ah)"/><text x="178.0" y="63.0" class="lbl sm" text-anchor="start">42.0 MPa</text><line x1="200.0" y1="99.0" x2="140.0" y2="99.0" class="tau" marker-end="url(#ahR)"/><line x1="140.0" y1="201.0" x2="200.0" y2="201.0" class="tau" marker-end="url(#ahR)"/><line x1="221.0" y1="120.0" x2="221.0" y2="180.0" class="tau" marker-end="url(#ahR)"/><line x1="119.0" y1="180.0" x2="119.0" y2="120.0" class="tau" marker-end="url(#ahR)"/><text x="229.0" y="154.0" class="lbl sm react-t" text-anchor="start">τ = 0.667 MPa</text><line x1="30.0" y1="285.0" x2="70.0" y2="285.0" class="axis" marker-end="url(#ahA)"/><line x1="30.0" y1="285.0" x2="30.0" y2="245.0" class="axis" marker-end="url(#ahA)"/><text x="74.0" y="289.0" class="lbl xs axis-t" text-anchor="start">z（朝 A 側）</text><text x="36.0" y="249.0" class="lbl xs axis-t" text-anchor="start">x（朝牆）</text><text x="170.0" y="22.0" class="lbl xs mute" text-anchor="middle">B 在頂面：從上方（+y）往下看</text></svg><figcaption>圖 4b　B 點元素：$\sigma_x=42.0$ MPa（拉），$\tau_{xz}=-0.667$ MPa。+x 面（上邊）的剪應力朝 −z（向左）。</figcaption></figure>
+</div>
+
+<h2>6. 主應力</h2>
+$$\sigma_{1,2}=\frac{\sigma}{2}\pm\sqrt{\left(\frac{\sigma}{2}\right)^2+\tau^2}$$
+<p><b>A 點</b></p>
+$$\sigma_{1,2}=-5.4\pm\sqrt{5.4^2+0.640^2}=-5.4\pm5.4378$$
+$$\sigma_1=37.8\ \text{kPa},\qquad \sigma_2=-10.8\ \text{MPa}$$
+<p><b>B 點</b></p>
+$$\sigma_{1,2}=21\pm\sqrt{21^2+(-0.667)^2}=21\pm21.0106$$
+$$\sigma_1=42.0\ \text{MPa},\qquad \sigma_2=-10.6\ \text{kPa}$$
+
+<h2>7. 為什麼正負號錯了，主應力卻還是對的</h2>
+<figure style="max-width:520px;margin-left:auto;margin-right:auto"><svg viewBox="-40 -10 480 360" role="img" aria-label="B 點莫爾圓">
+<defs>
+ <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+ <marker id="ahL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahL"/></marker>
+ <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahA"/></marker>
+ <marker id="ahR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahR"/></marker>
+ <marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" class="tkm"/></marker>
+</defs><line x1="40.0" y1="160.0" x2="380.0" y2="160.0" class="axis" marker-end="url(#ahA)"/><line x1="50.0" y1="10.0" x2="50.0" y2="310.0" class="axis" marker-end="url(#ahA)"/><text x="382.0" y="176.0" class="lbl sm axis-t" text-anchor="start">σ</text><text x="44.0" y="310.0" class="lbl xs axis-t" text-anchor="end">τ（向下為正）</text><circle cx="176.0" cy="160" r="134.8" class="mohr"/><line x1="302.0" y1="112.0" x2="50.0" y2="208.0" class="dim" /><circle cx="176.0" cy="160" r="3" class="pt2"/><circle cx="302.0" cy="112.0" r="5.5" class="pt"/><text x="310.0" y="106.0" class="lbl xs b" text-anchor="start">X（τ = −0.667，正確）</text><circle cx="302.0" cy="208.0" r="5" class="ghost"/><text x="310.0" y="224.0" class="lbl xs mute" text-anchor="start">X′（誤用 +0.667）</text><circle cx="310.8" cy="160" r="4" class="pt2"/><circle cx="41.2" cy="160" r="4" class="pt2"/><text x="316.8" y="178.0" class="lbl sm" text-anchor="start">σ₁</text><text x="35.2" y="178.0" class="lbl sm" text-anchor="end">σ₂</text><text x="216.0" y="320.8" class="lbl xs mute" text-anchor="middle">τ 已放大繪製（非比例尺）；X 與 X′ 落在同一個圓上</text></svg><figcaption>圖 5　B 點的莫爾圓。$\tau$ 換號只會讓 X 點上下鏡射成 X′，圓心（21 MPa）和半徑（實際 21.01 MPa）都不變，所以 $\sigma_1$、$\sigma_2$ 不變。</figcaption></figure>
+<p>正負號會改變的是<b>主平面的方向</b>：</p>
+$$\tan2\theta_p=\frac{\tau_{xz}}{\sigma_x/2}=\frac{-0.667}{21}\;\Rightarrow\;\theta_p=-0.91^\circ\ (\sigma_1)$$
+<p>如果誤用 $+0.667$，算出來會是 $+0.91^\circ$，主平面就轉錯了方向。同樣的方法算 A 點：$\theta_p=86.6^\circ$ 對應 $\sigma_1$，$-3.4^\circ$ 對應 $\sigma_2$。</p>
+
+<h2>8. 結果總表</h2>
+<table>
+<tr><th>點</th><th>σ (MPa)</th><th>τ 原答案</th><th>τ 正確</th><th>σ₁</th><th>σ₂</th></tr>
+<tr><td>A</td><td>−10.8</td><td>0.640</td><td class="good">+0.640</td><td>37.8 kPa</td><td>−10.8 MPa</td></tr>
+<tr><td>B</td><td>42.0</td><td class="bad">0.667</td><td class="good">−0.667</td><td>42.0 MPa</td><td>−10.6 kPa</td></tr>
+</table>
+
+<h2>9. 驗證方式</h2>
+<ol>
+<li><b>程式驗算</b>：在右手座標系 (x 朝牆、y 向上、z 朝 A 側) 用向量計算 $\vec V=-\vec P$、$\vec M=-\vec r\times\vec P$，得到 $V_z=-9$ kN，因此 $\tau_{xz}(B)=-0.667$ MPa，$\tau_{xy}(A)=+0.640$ MPa，和參考答案的 −0.667 一致。</li>
+<li><b>不變量</b>：每一點都滿足 $\sigma_1+\sigma_2=\sigma$。</li>
+<li><b>主應力對照</b>：網路上的課本答案摘錄（Chegg）列的也是 A：37.8 kPa / −10.8 MPa，B：42.0 MPa / −10.6 kPa。這份摘錄我只看到搜尋摘要，沒能打開原頁面親眼確認。</li>
+</ol>
+</main>
+</body>
+</html>
